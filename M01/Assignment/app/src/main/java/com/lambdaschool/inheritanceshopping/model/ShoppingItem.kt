@@ -2,9 +2,7 @@ package com.lambdaschool.inheritanceshopping.model
 
 import java.io.Serializable
 
-open class ShoppingItem
-
-    protected constructor (
+open class ShoppingItem(
     val colorId: Int,
     val productName: String
 
@@ -30,9 +28,9 @@ class GroceryItem(colorId: Int, productName: String, val needsRefrigeration: Boo
     }
 }
 
-class ClothingItem(colorId: Int, productName: String, val waistSize: String): ShoppingItem(colorId, productName) {
+class ClothingItem(colorId: Int, productName: String, val size: String): ShoppingItem(colorId, productName) {
     override fun getDisplayName(): String {
-        return "Product Name: $productName\nWaist Size: $waistSize"
+        return "Product Name: $productName\nWaist Size: $size"
     }
 }
 
