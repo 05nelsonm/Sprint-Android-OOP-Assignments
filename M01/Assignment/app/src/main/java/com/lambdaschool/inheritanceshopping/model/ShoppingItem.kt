@@ -30,7 +30,7 @@ class GroceryItem(colorId: Int, productName: String, val needsRefrigeration: Boo
 
 class ClothingItem(colorId: Int, productName: String, val size: String): ShoppingItem(colorId, productName) {
     override fun getDisplayName(): String {
-        return "Product Name: $productName\nWaist Size: $size"
+        return "Product Name: $productName\nSize: $size"
     }
 }
 

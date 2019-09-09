@@ -42,7 +42,8 @@ class ShoppingItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.productName
+        holder.mIdView.text = item.getDisplayName()
+        holder.mIdView.setBackgroundColor(item.colorId)
 
         with(holder.mView) {
             tag = item
