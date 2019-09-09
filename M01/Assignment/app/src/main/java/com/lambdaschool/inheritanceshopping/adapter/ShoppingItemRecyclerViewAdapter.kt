@@ -1,5 +1,6 @@
 package com.lambdaschool.inheritanceshopping.adapter
 
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,7 @@ class ShoppingItemRecyclerViewAdapter(
         val item = mValues[position]
         holder.mIdView.text = item.getDisplayName()
         holder.mIdView.setBackgroundColor(item.colorId)
+        holder.mIdView.setTextColor(Color.BLACK)
 
         with(holder.mView) {
             tag = item
