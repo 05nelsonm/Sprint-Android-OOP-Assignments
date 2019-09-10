@@ -1,5 +1,6 @@
 package com.lambdaschool.abstractionintpoly
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,10 @@ class ItemDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
+        rootView.btn_send_info.setOnClickListener {
+            responseObject?.provideInfoForObject(item?.info() ?: "No info")
+        }
+
         // TODO 10: Set up the drawable from the item
         item?.let { image ->
             rootView.item_image.setImageDrawable(
@@ -61,10 +66,23 @@ class ItemDetailFragment : Fragment() {
     }
 
     // TODO 13: S05M02-15 Create your own interface to communicate with the Activity
+    interface DetailResponse {
+        fun provideInfoForObject(info: String)
+    }
 
-    // TODO 16: Store the Activity in a property in onAttach
+    private var responseObject: DetailResponse? = null
 
-    // TODO 17: Null out the property in onDetach
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is DetailResponse) {
+            responseObject = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        responseObject = null
+    }
 
     companion object {
         /**

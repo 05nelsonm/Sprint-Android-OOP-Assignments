@@ -35,7 +35,11 @@ import retrofit2.Response
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-class ItemListActivity : AppCompatActivity() {
+class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
+
+    override fun provideInfoForObject(info: String) {
+        Toast.makeText(this, "We got this info from the detail:\n$info", Toast.LENGTH_SHORT).show()
+    }
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
