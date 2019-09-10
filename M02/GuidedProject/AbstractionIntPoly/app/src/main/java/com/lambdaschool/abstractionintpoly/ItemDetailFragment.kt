@@ -36,6 +36,7 @@ class ItemDetailFragment : Fragment() {
                 val dff = it.getSerializable(ARG_ITEM_ID) as SwApiObject
                 activity?.toolbar_layout?.let { layout ->
                     // TODO 11: S05M02-13 set up the item from the object
+                    layout.title = item?.name ?: ""
                 }
             }
         }
@@ -48,6 +49,13 @@ class ItemDetailFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
         // TODO 10: Set up the drawable from the item
+        item?.let { image ->
+            rootView.item_image.setImageDrawable(
+                rootView.context.getDrawable(
+                    DrawableResolver.getDrawableId(image.category, image.id)
+                )
+            )
+        }
 
         return rootView
     }
