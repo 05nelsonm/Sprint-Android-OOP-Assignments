@@ -16,6 +16,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.lambdaschool.abstractionintpoly.model.Person
+import com.lambdaschool.abstractionintpoly.model.Starship
 import com.lambdaschool.abstractionintpoly.model.SwApiObject
 import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPI
 import kotlinx.android.synthetic.main.activity_item_list.*
@@ -85,8 +87,61 @@ class ItemListActivity : AppCompatActivity() {
     private fun getData() {
 
         // Add people
+        val personIds = mutableListOf(1, 2, 3, 4, 5, 6)
+        personIds.shuffle()
+
+        personIds.forEach {
+            getPerson(it)
+        }
 
         // Add starships
+        val starshipIds = mutableListOf(15, 5, 12, 13, 23, 10)
+        starshipIds.shuffle()
+        starshipIds.forEach {
+            getStarship(it)
+        }
+    }
+
+    fun getPerson(id: Int) {
+        starWarsAPI.getPerson(id).enqueue(object: Callback<Person> {
+            override fun onFailure(call: Call<Person>, t: Throwable) {
+                progressBar.visibility = View.GONE
+            }
+
+            override fun onResponse(call: Call<Person>, response: Response<Person>) {
+                progressBar.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val person = response.body()
+                    person?.let {
+                        it.id = person.id
+                        it.category = DrawableResolver.CHARACTER
+                        swApiObjects.add(person)
+                        viewAdapter?.notifyItemInserted(swApiObjects.size-1)
+                    }
+                }
+            }
+        })
+    }
+
+    fun getStarship(id: Int) {
+        starWarsAPI.getStarship(id).enqueue(object: Callback<Starship> {
+            override fun onFailure(call: Call<Starship>, t: Throwable) {
+                progressBar.visibility = View.GONE
+            }
+
+            override fun onResponse(call: Call<Starship>, response: Response<Starship>) {
+                progressBar.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val starship = response.body()
+                    starship?.let {
+                        it.id = starship.id
+                        it.category = DrawableResolver.CHARACTER
+                        swApiObjects.add(starship)
+                        viewAdapter?.notifyItemInserted(swApiObjects.size-1)
+                    }
+                }
+            }
+        })
     }
 
     class SimpleItemRecyclerViewAdapter(
@@ -139,8 +194,16 @@ class ItemListActivity : AppCompatActivity() {
             val swApiObject = values[position]
 
             // TODO 8: S05M02-8 convert id to string to display
+            holder.idView.text = "${swApiObject.id}"
+            holder.nameView.text = swApiObject.name ?: "" // if the string is null, it will return "null" which looks messy
 
             // TODO 9: S05M02-9 bind data to new views
+            holder.categoryView.text = swApiObject.category
+            holder.imageView.setImageDrawable(
+                holder.imageView.context.getDrawable(
+                    DrawableResolver.getDrawableId(swApiObject.category, swApiObject.id)
+                )
+            )
 
             with(holder.itemView) {
                 tag = swApiObject
