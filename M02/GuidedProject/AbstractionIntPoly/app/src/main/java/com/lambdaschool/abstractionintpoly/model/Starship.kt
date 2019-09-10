@@ -19,13 +19,11 @@ data class Starship(
     val manufacturer: String,
     @SerializedName("cost_in_credits") val costInCredits: String,
     val length: String
-) : SwApiObject() { // will inherit from that class
+) : SwApiObject() {
 
-    override fun info(): String {
-        return "COST: $costInCredits\nURL = $url"
-    }
+    override fun info(): String = "COST: $costInCredits\nURL = $url"
 
     override fun toString(): String {
-        return "$name, model $model is manufactured by $manufacturer, is $length m in length, and was built at a cost of $costInCredits. Url is $url"
+        return "$name, model $model is manufactured by $manufacturer, is $length m in length, and was built at a cost of $costInCredits credits. Url is $url"
     }
 }

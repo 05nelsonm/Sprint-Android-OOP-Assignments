@@ -2,9 +2,9 @@ package com.lambdaschool.abstractionintpoly.retrofit
 
 import com.lambdaschool.abstractionintpoly.model.Person
 import com.lambdaschool.abstractionintpoly.model.Starship
-import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

@@ -21,11 +21,9 @@ data class Person(
     @SerializedName("hair_color") val hairColor: String,
     @SerializedName("skin_color") val skinColor: String,
     @SerializedName("eye_color") val eyeColor: String
-) : SwApiObject() { // will inherit from that class
+) : SwApiObject() {
 
-    override fun info(): String {
-        return "EYES: $eyeColor\nURL = $url"
-    }
+    override fun info(): String = "EYES: $eyeColor\nURL = $url"
 
     override fun toString(): String {
         return "$name is $height cm tall, they have $skinColor skin and $hairColor hair with $eyeColor eyes."

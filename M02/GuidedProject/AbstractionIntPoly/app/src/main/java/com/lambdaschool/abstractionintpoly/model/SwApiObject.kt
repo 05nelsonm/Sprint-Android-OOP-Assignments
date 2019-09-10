@@ -12,9 +12,7 @@ abstract class SwApiObject(
 
 ) : Serializable {
 
-    open fun info(): String {
-        return "A Star Wars object"
-    }
+    open fun info(): String = "A Star Wars object"
 
     override fun toString(): String {
         return "SwApiObject(name=$name, url=$url, id=$id, category=$category"

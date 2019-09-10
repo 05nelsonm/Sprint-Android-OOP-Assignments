@@ -49,15 +49,13 @@ class ItemDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
-        rootView.btn_send_info.setOnClickListener {
-            responseObject?.provideInfoForObject(item?.info() ?: "No info")
-        }
+        rootView.infoButton.setOnClickListener { responseObject?.provideInfoForObject(item?.info() ?: "No info") }
 
         // TODO 10: Set up the drawable from the item
-        item?.let { image ->
+        item?.let {
             rootView.item_image.setImageDrawable(
                 rootView.context.getDrawable(
-                    DrawableResolver.getDrawableId(image.category, image.id)
+                    DrawableResolver.getDrawableId(it.category, it.id)
                 )
             )
         }

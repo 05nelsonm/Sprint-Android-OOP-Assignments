@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!--S04M03-22 add transition name to shared elements-->
     <Button
-        android:id="@+id/btn_send_info"
+        android:id="@+id/infoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Info"
-        android:textAllCaps="false" />
+        android:text="Send info" />
 
     <ImageView
         android:id="@+id/item_image"
@@ -26,8 +25,8 @@
 
     <TextView
         android:id="@+id/item_text"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="0dp" />
 
 </LinearLayout>

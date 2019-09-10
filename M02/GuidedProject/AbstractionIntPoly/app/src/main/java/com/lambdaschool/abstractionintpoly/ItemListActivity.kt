@@ -93,7 +93,6 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
         // Add people
         val personIds = mutableListOf(1, 2, 3, 4, 5, 6)
         personIds.shuffle()
-
         personIds.forEach {
             getPerson(it)
         }
@@ -107,7 +106,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
     }
 
     fun getPerson(id: Int) {
-        starWarsAPI.getPerson(id).enqueue(object: Callback<Person> {
+        starWarsAPI.getPerson(id).enqueue(object : Callback<Person> {
             override fun onFailure(call: Call<Person>, t: Throwable) {
                 progressBar.visibility = View.GONE
             }
@@ -120,7 +119,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                         it.id = id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(person)
-                        viewAdapter?.notifyItemInserted(swApiObjects.size-1)
+                        viewAdapter?.notifyItemInserted(swApiObjects.size - 1)
                     }
                 }
             }
@@ -128,7 +127,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
     }
 
     fun getStarship(id: Int) {
-        starWarsAPI.getStarship(id).enqueue(object: Callback<Starship> {
+        starWarsAPI.getStarship(id).enqueue(object : Callback<Starship> {
             override fun onFailure(call: Call<Starship>, t: Throwable) {
                 progressBar.visibility = View.GONE
             }
@@ -139,15 +138,14 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                     val starship = response.body()
                     starship?.let {
                         it.id = id
-                        it.category = DrawableResolver.CHARACTER
+                        it.category = DrawableResolver.STARSHIP
                         swApiObjects.add(starship)
-                        viewAdapter?.notifyItemInserted(swApiObjects.size-1)
+                        viewAdapter?.notifyItemInserted(swApiObjects.size - 1)
                     }
                 }
             }
         })
     }
-
     class SimpleItemRecyclerViewAdapter(
         private val parentActivity: ItemListActivity,
         private val values: List<SwApiObject>,
@@ -199,7 +197,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
 
             // TODO 8: S05M02-8 convert id to string to display
             holder.idView.text = "${swApiObject.id}"
-            holder.nameView.text = swApiObject.name ?: "" // if the string is null, it will return "null" which looks messy
+            holder.nameView.text = swApiObject.name ?: ""
 
             // TODO 9: S05M02-9 bind data to new views
             holder.categoryView.text = swApiObject.category
