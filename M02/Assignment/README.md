@@ -8,7 +8,7 @@ Steps:
 1. Create a new project using the Master/Detail template. This should give you two Activity classes, a Fragment class, and a dummy module with a DummyItem class.
 2. Create a model package to contain the class and interface hierarchy you will be using.
 3. In your model package, create the following (you can do this in one file or separate files):
-* An abstract class `Vehicle` which has at a minimum properties `id : String`, `weight: Int`, and `favorite: Boolean` and an abstract method `fly` which takes no arguments and returns a `String`.
+* An abstract class `Vehicle` which has at a minimum properties `id : String`, `weight: Int`, and `favorite: Boolean` and an abstract method `travel` which takes no arguments and returns a `String`.
 * Three interfaces, `AirTravel`, `WaterTravel` and `GroundTravel` with methods for `fly`, `sail`, and `drive` respectively.
 * Six classes (whatever names you choose) that inherit from the `Vehicle` class and implement one or more of the interfaces. Implement the abstract and interface methods by creating a string that returns information about the `Vehicle` subclass (e.g., your `fly` body could be `return "$id travels via ${sail()} and ${drive()}"` with appropriate implementations of `sail` and `fly`)
 * An object that is `ArrayList` of `Vehicle` subclasses. These will be used in the Master/Detail views
