@@ -113,7 +113,7 @@ class ItemListActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val person = response.body()
                     person?.let {
-                        it.id = person.id
+                        it.id = id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(person)
                         viewAdapter?.notifyItemInserted(swApiObjects.size-1)
@@ -134,7 +134,7 @@ class ItemListActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val starship = response.body()
                     starship?.let {
-                        it.id = starship.id
+                        it.id = id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(starship)
                         viewAdapter?.notifyItemInserted(swApiObjects.size-1)
