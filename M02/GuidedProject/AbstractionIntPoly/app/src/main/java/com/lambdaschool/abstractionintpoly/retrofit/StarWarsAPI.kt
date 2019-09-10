@@ -8,16 +8,17 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 // TODO 5: S05M02-5 Add the networking calls
 interface StarWarsAPI {
 
     @GET("people/{id}")
-    fun getPerson(id: Int): Call<Person>
+    fun getPerson(@Path("id") id: Int): Call<Person>
 
-    @GET("")
-    fun getStarship(id: Int): Call<Starship>
+    @GET("starships/{id}")
+    fun getStarship(@Path("id") id: Int): Call<Starship>
 
     class Factory {
 
