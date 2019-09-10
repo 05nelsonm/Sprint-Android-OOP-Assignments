@@ -1,11 +1,16 @@
 package com.lambdaschool.inheritanceshopping.adapter
 
+import android.content.Context
 import android.graphics.Color
+import android.graphics.Color.parseColor
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.getColor
 import com.lambdaschool.inheritanceshopping.R
 
 
@@ -25,6 +30,7 @@ class ShoppingItemRecyclerViewAdapter(
 ) : RecyclerView.Adapter<ShoppingItemRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
+    lateinit var context: Context
 
     init {
         mOnClickListener = View.OnClickListener { v ->
@@ -38,14 +44,16 @@ class ShoppingItemRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_shoppingitem, parent, false)
+        context = parent.context
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.mIdView.text = item.getDisplayName()
-        holder.mIdView.setBackgroundColor(item.colorId)
         holder.mIdView.setTextColor(Color.BLACK)
+        holder.cardView.setCardBackgroundColor(getColor(context, item.colorId))
+        holder.imageView.setImageDrawable(item.drawableName)
 
         with(holder.mView) {
             tag = item
@@ -53,10 +61,14 @@ class ShoppingItemRecyclerViewAdapter(
         }
     }
 
-    override fun getItemCount(): Int = mValues.size
+    override fun getItemCount(): Int {
+        return mValues.size
+    }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mIdView: TextView = mView.tv_shopping_item
+        val cardView: CardView = mView.card_view
+        val imageView: ImageView = mView.iv_item_image
         /*val mContentView: TextView = mView.content
 
         override fun toString(): String {

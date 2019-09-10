@@ -1,10 +1,12 @@
 package com.lambdaschool.inheritanceshopping.model
 
+import android.graphics.drawable.Drawable
 import java.io.Serializable
 
 open class ShoppingItem(
     val colorId: Int,
-    val productName: String
+    val productName: String,
+    val drawableName: Drawable?
 
 ) {
 
@@ -14,7 +16,7 @@ open class ShoppingItem(
 
 }
 
-class GroceryItem(colorId: Int, productName: String, val needsRefrigeration: Boolean): ShoppingItem(colorId, productName) {
+class GroceryItem(colorId: Int, productName: String, drawableName: Drawable?, val needsRefrigeration: Boolean): ShoppingItem(colorId, productName, drawableName) {
     override fun getDisplayName(): String {
 
         var refrigeration = ""
@@ -28,13 +30,13 @@ class GroceryItem(colorId: Int, productName: String, val needsRefrigeration: Boo
     }
 }
 
-class ClothingItem(colorId: Int, productName: String, val size: String): ShoppingItem(colorId, productName) {
+class ClothingItem(colorId: Int, productName: String, drawableName: Drawable?, val size: String): ShoppingItem(colorId, productName, drawableName) {
     override fun getDisplayName(): String {
         return "Product Name: $productName\nSize: $size"
     }
 }
 
-class ElectronicsItem(colorId: Int, productName: String, val onSale: Boolean): ShoppingItem(colorId, productName) {
+class ElectronicsItem(colorId: Int, productName: String, drawableName: Drawable?, val onSale: Boolean): ShoppingItem(colorId, productName, drawableName) {
     override fun getDisplayName(): String {
 
         var itemOnSale = ""
