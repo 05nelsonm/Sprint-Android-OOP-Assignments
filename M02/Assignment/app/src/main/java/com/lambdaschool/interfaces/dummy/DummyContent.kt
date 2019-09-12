@@ -1,5 +1,6 @@
 package com.lambdaschool.interfaces.dummy
 
+import com.lambdaschool.interfaces.model.*
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -9,49 +10,31 @@ import java.util.HashMap
  *
  * TODO: Replace all uses of this class before publishing your app.
  */
-object DummyContent {
+object ListOfVehicles {
 
     /**
      * An array of sample (dummy) items.
      */
-    val ITEMS: MutableList<DummyItem> = ArrayList()
+    val ITEMS: MutableList<Vehicle> = ArrayList()
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, DummyItem> = HashMap()
-
-    private val COUNT = 25
+    val ITEM_MAP: MutableMap<String, Vehicle> = HashMap()
 
     init {
-        // Add some sample items.
-        for (i in 1..COUNT) {
-            addItem(createDummyItem(i))
-        }
-    }
+        ITEMS.add(JetPlane("Jet plane", 100000, true))
+        ITEMS.add(SpaceShuttle("Space shuttle", 10000000, false))
+        ITEMS.add(SpeedBoat("Speedboat", 7000, false))
+        ITEMS.add(SailBoat("Sailboat", 100000, true))
+        ITEMS.add(Bus("Bus", 35000, false))
+        ITEMS.add(Car("Car", 10000, true))
 
-    private fun addItem(item: DummyItem) {
-        ITEMS.add(item)
-        ITEM_MAP.put(item.id, item)
-    }
-
-    private fun createDummyItem(position: Int): DummyItem {
-        return DummyItem(position.toString(), "Item " + position, makeDetails(position))
-    }
-
-    private fun makeDetails(position: Int): String {
-        val builder = StringBuilder()
-        builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
-            builder.append("\nMore details information here.")
-        }
-        return builder.toString()
-    }
-
-    /**
-     * A dummy item representing a piece of content.
-     */
-    data class DummyItem(val id: String, val content: String, val details: String) {
-        override fun toString(): String = content
+        ITEM_MAP[ITEMS[0].id] = ITEMS[0]
+        ITEM_MAP[ITEMS[1].id] = ITEMS[1]
+        ITEM_MAP[ITEMS[2].id] = ITEMS[2]
+        ITEM_MAP[ITEMS[3].id] = ITEMS[3]
+        ITEM_MAP[ITEMS[4].id] = ITEMS[4]
+        ITEM_MAP[ITEMS[5].id] = ITEMS[5]
     }
 }
