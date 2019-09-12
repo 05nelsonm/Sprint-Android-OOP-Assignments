@@ -16,7 +16,7 @@ dataBinding {
     enabled = true
 }
 ```
-This will enable DataBinding in your app
+This will enable DataBinding in your app 
 
 ### STEP 3 - Declare packages
 A) Declare appropriate packages for your API, Model, View and ViewModel.
